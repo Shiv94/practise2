@@ -1,0 +1,566 @@
+angular.module('ngcribs',['ui.bootstrap']);
+
+--name of the module...and then any dependency that we might need.. here we are using ui bootstrap 
+mvc-> pattern for organising code 
+-->models->properties of scope
+views->html view page
+controllers-business logic for the application
+scope->object that ties controller and view together
+
+two way data binding ->>>one single source of truth..
+any change will be reflected automatically
+angular.module('ngcribs') ->if we dont use the second parameter it makes a reference to the module 
+instead of declaring a 
+var app= angular.module('ngcribs',[])and then reusing it all over everywhere controllers are not meant for data they are meant for business logic ->its better to keep it minimal
+
+we use services
+->we can either create service together or use factory to create services.
+angular js is a front end framework and does not care about the language..if we want to interact with data from server we use http 
+
+->$http service->post,get,put,delete      --------------------query,save,remove------>
+
+adding css in angular
+--> ng-click,ng-show,ng-hide,ng-model--->adds the text box kinda thing that is used for binding
+
+angular js allows you to extend html tags and attributes using directives..to bind data to html elements
+->modules to reuse code in other applications
+---->scope->means data
+--->data binding..whenever data changes in model web page is updated..and vice versa---->done using ng-model one way,also data-ng-bind
+-->Services->Web services
+ng-app ng-init ng-controller are directives
+<html ng-app ="app1" ng-init="person={fName:'Derek',lName="shi"};capitals={}>
+app1.controller('ctr1',function($scope){
+we use scope to provide data------ to our html page
+
+
+scope links html elements to variables in our scope
+function($scope) is called the factory function
+--->scope is a dependency ,is telling angular to automatically pass scope object..whenever the function is going to be called
+-->angular is smart enough to know that
+----->scope is passed automatically when the controller is called..
+-->this is an eg of dependency injection
+//default
+$scope.first=1;
+$scope.second=1;
+$scope.updateValue=function(){
+$scope.calculation=$scope.first + ' + = + $scope.second + " = " + (+$scope.first+ +scope.second)
+<input type="text" ng-model="first"/>--->will display 1
+<input type="text" ng-model="second"/>--->will display 1
+
+<button ng-click="updateValue()"></button>
+
+<ng-cloak->we dont have to display anything on the screen until everything is loaded add this in the html tag
+
+<span data-ng-bind="second"><span>
+-->bind data directly into your elements
+
+<ul>
+<li ng-repeat="capital in capitals">
+{{'City:' + capital.city }}
+</li>
+</ul>
+
+///can use multiple views and multiple controllers as well
+--->multiple views with same controller
+
+var app2= angular.module('app2',[]);
+app2.controller('ctrl1,function($scope){
+ $scope.randomNum=2;
+
+
+});
+app2.controller('ctrl2,function($scope){
+ $scope.randomNum11=2;
+
+
+});
+--->accessing multiple controllers in the same view
+<h4 ng-controller="ctrl1">I am feeling {{ randomNum }}</h4>
+<h4 ng-controller="ctrl2">I am feeling {{ randomNum11 }}</h4>
+
+
+<html ng-app="app2" ng-cloak>
+display:none..->change css
+--->iterating  to the list
+
+
+--->skips the first item
+<ol start="2">-->to skip the first item
+<li ng-repeat="grocery in groceries" ng-if="$index>0">
+{{ grocery.item  $index  }}
+</li>
+</ol>
+
+
+ng-repeat-start ng-repeat-end->for 2 elements rather than 1
+<table>
+<tr ng-repeat-start="grocery in groceries">
+<td>
+{{grocery.item}}
+</td>
+<tr ng-repear-end>
+<td>
+{{grocery.purchased}}
+</td>
+</tr>
+</table>
+
+....
+<label>CHange first item:</label>
+<input ng-model="groceies[0].item"/>
+
+---ng-include to include html fragments into our pages
+
+in grocerylist.html
+
+</ol>
+<li ng-repeat="grocery in groceries">
+{{grocery.item}}
+</li>
+</ol>
+now in the controller
+$scope.getList=function(){
+
+return $scope.showList ? "ulgroceryList.html" :groceryList.html">
+
+};
+-->this will display from the grocerylist.html
+<div ng-include="grocerylist.html"></div>
+
+
+<input type="checkbox"ng-model="showList">
+
+<ng-include src="getList()"></ng-include>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+ dependency injection->>> giving a function an object 
+rather than creating an object inside a function,you pass it to the function
+$scope ---> angular js does dependency injection using scope
+then can add on to the scope object 
+
+<html ng-app> or <html data-ng-app> or <html data-ng-app="">
+<input type="text" ng-model="name"/>{{ name }}----> behind the scenes add a property in memory called name in scope
+--->making an empty view model and filling it with name property
+as we type into the textbox the binding takes place
+
+
+
+<div class="container" data-ng-init="names=['Dave','Napur']">
+<li data-ng-repeat="name in names">{{name}}>/li>
+
+
+--FILTERSSSS
+{{cust.Name | uppercase }}
+{{cust.name | lowercase }}
+<input type="text" data-ng-model="nameText"/>
+<ul>
+<li data-ng-repeat="cust in customers | filter:nameText | orderBY:"'name'">
+{{cust.name |uppercase}} - {{cust.city| lowercase}}</li>
+</ul>
+
+--filters by what i type out and orders also
+
+
+-----------------------------------------------------------------------
+mvc part of angular js
+------->scope->is like view model
+
+viewwww<----------$scope ----->controller
+view doesnt have to know about controller and vice versa
+
+$scope is the glue---->view model bw a controller and view
+
+view model is the data for the view
+
+scope is the viewmodel
+
+MODULESSSSSS
+-------------------------------------------------------------
+module->config->routes->view and controller
+<html ng-app="moduleName">
+-->angular is very modular...
+angular.module('moduleName',[]);
+var demoApp= angular.module('demoApp',[])--->empty array is for dependency injection..if my module relies on another module
+var demoApp= angular.module('demoApp',['helperModule']);
+demoApp.controller('SimpleController',function($scope){
+$scope.customer=2;
+
+});
+  
+$routeProvider--->when route is a slash
+
+demoApp.config(function($routeProvider){
+$routeProvider.when('/',{controller:'SimpleController',templateUrl:'View1.html'}).when('/partial2'{controller:'SimpleController',templateUrl:'View2.html'}).otherwise({redirectTo:'/'});
+});
+
+
+factory injected into controller at runtime
+
+ demoApp.factory(simpleFactory,function($http){})
+
+
+ANGULAR JS FACTORIES
+services and factories are nearly same
+application.factory('app',function(){
+
+dont use this keyword we use the object
+var randomObject = {};
+var num=Math.floor();
+randomObject.generate= function(){
+return num;};
+return randomObject;
+});
+
+application.controller('app',function($scope,random){
+$scope.generateRandom=function(){
+$scope.randomNumber=random.generate();
+$scope.randomNumber2=random.generate();
+};
+});
+
+SERVICES
+allow to have data in different controllers
+-->eg using http angular service 
+services are singleton -->only one instance is created and reference is passed
+ran the service
+passed reference of the service 
+in random.generate
+so if you click on the button again then also the number will be there
+
+var application= angular.module('mainApp',[]);
+application.service('random',function(){
+//we use this keyword to point to this service
+var num=Math.random();--->private cant access this outside the service
+this.generate=function(){
+return num;
+
+};
+
+});
+
+
+application.controller('app',function($scope,random){-->include name of service to use in the controller
+
+$scope.generateRandom=function(){
+
+$scope.randomNumber=random.generate();};
+
+});
+<button ng-click="generateRandom()">
+<br> {{ randomNumber }} </br>
+
+differences between services ,factory and providers
+
+application.service('fromService',function(){
+this.message="this is from service!";});
+application.factory('fromFactory',function(){
+var factory ={};
+factory.message="this is from factory!";
+return factory;
+});
+
+NG-SHOW DIRECTIVE
+
+->if else statement to show
+->say you have a message and you want to toggle those messages 
+with the help of a button
+<button ng-click ="toggle">Toggle Message </button>
+<div class="message" ng-show="(variable name that we will be registering insde js)show =='msg1'">This is my message one</div>
+
+<div class="message" ng-show="(variable name that we will be registering insde js)show=='msg2'">This is my message two</div>
+
+appx.controller('app',function($scope){
+$scope.show = 'msg1';
+$scope.toggle=function(){
+$scope.show= $scope.show=='msg1'?'msg2':'msg1';
+};
+
+});
+
+ng-app gives angular a direction where to start the code
+something like main function in java
+
+BIND DATA IN HTML dynamically
+ng-bind and ng-model->these are directives
+
+ng-model works on every input type
+ng-bind
+<input type="text" ng-model="name"></input>
+<div ng-bind="name">{{ name }}</div>
+----->so whatever you type in the input field it gets updated in ng-bind.
+
+----------------------------------------------------------------
+ng-model doesnt work with div...in this case
+<div ng-model="name" contenteditable="true">
+allows to convert div to a field where you can type something(Text)
+
+
+ng-model works only with specific input types,textarea,select,other html elements that take input from user
+
+---------------------------------------------------------------------------
+DIRECTIVES IN ANGULAR JS
+->ng-model
+->ng-bind
+
+EXPRESSIONS IN ANGULAR JS
+<div>10+10={{ 10+10 }}</div>
+
+<div ng-init="language='AngularJS;">
+{{ language }}
+
+o/p---->AngularJS
+
+------------------------------------------------------------------------
+NG-REPEAT
+controllers are js objects created by angular js
+
+var myObject={};
+console.log(typeof myObject);
+
+angularJS controller  controls data of the application you have written with angularJS
+ng-controller->gives a unique name to a part of html that makes use of mvc model of angularJS
+
+
+<div ng-controller="languages">
+Select your Favourite Language
+</div>
+<script>
+var application=angular.module('myModule',[]);
+application.controller('languages',function($scope){
+angular is always looking for argument with variable scope
+$scope.myFavLanguage='None';
+});
+
+{{price |currency:"Rs. ":5 }}
+{{price | number:5 }}
+----------------------------------------------
+NG-INCLUDE..to split content in different files
+<div ng-include="'dummyfile.html'"></div>
+initiates ajax request with get...
+----------------------------------------------------------
+ROUTES are a way to handle context in website
+http://www.example.com/#books
+----->user is going to the specific books..
+<div ng-view></div>
+
+var app= angular.module('mainApp',['ngRoute']);
+
+ngroute is available online its a  js file
+
+app.config(function($routeProvider){
+
+$routeProvider.when('/',{
+template:"'welcome User!'
+OR
+templateUrl:'page.html'
+
+}).when('/anotherpage',{
+template:"'welcome User1!'
+
+}).otherwise({
+redirectTo:'/'
+});
+});
+
+-----------------------------------------------------------------
+routingggg
+
+
+app.config(function($routeProvider){
+$routeProvider.when('/',{
+templateUrl:'login.html'})
+.when('/dashboard',
+templateUrl:'dashboard.html'})
+.otherwise({
+redirectTo:'/'});});
+
+app.controller('loginctrl',function($scope,$location){
+$scope.submit=function(){
+var uname=$scope.username;
+var password=$scope.password;
+if(scope.udername == 'admin' && $scope.password == 'admin'){
+$location.path('/dashboard');
+}
+else{
+alert('wrong stuff');}});
+
+
+rootscope accessible from other places also..
+
+
+--------------------------------
+http service
+
+--->retrieve data from remote service
+<div ng-controller="people">
+<ul>
+<li ng-repeat="person in persons">
+{{ person.Name + person.age }}
+</li>
+app.controller('people',function($scope,$http){
+
+$http.get('http://127.0.1./AngularJS/database.json').success(function(response){
+
+$scope.persons = response.records;
+});
+
+create another json file..
+
+
+----------------------------------
+creating simple search box
+
+<body ng-app="myApp">
+<input type="text" ng-model="searchBox">
+<div ng-controller="people">
+<ul>
+<li ng-repeat="person in persons | filter:globalSearch"> 
+{{person.Name + ' " ' + person.Age }}
+</li>
+</ul>
+</div>
+</input>
+</body>
+
+
+<li ng-repeat="person in persons | filter:globalSearch.$">
+<li ng-repeat="person in persons | filter:globalSearch.Name">
+<li ng-repeat="person in persons | filter:globalSearch.Age">
+
+--------------------------------------------------------------------
+PASSING DATA BETWEEN DIFFERENT SCOPES
+-services can be used for this too
+<input type="text" ng-model="message
+>
+<span ng-repeat="i in[1,2]">{{ i }}  </span>
+</input>
+
+CUSTOM DIRECTIVES
+app.directive('appInfo', function() { 
+  return { 
+    restrict: 'E', 
+    scope: { 
+      info: '=' 
+    }, 
+    templateUrl: 'js/directives/appInfo.html' 
+  }; 
+});
+restrict specifies how the directive will be used 
+in the view. The 'E' means it will be used as a new HTML element.
+
+
+
+googles product-ANGULAR JS
+even netflix is using angular js
+
+client side we are using angular js
+No Dependencies..works alone
+lot of modules available..
+-> more modules will help to build application in less time
+Routing->routing from one page to another
+from home tab to another tab.. easier to do
+
+Test-> awesome test support
+
+PERFORMANCE MATRIX->light weight component..loads in the application
+quickly
+
+what is data binding?
+
+whenever we get data from the server we have to bind it in the UI.
+whenever you update model the view gets updated automatically..
+thats what data bining means
+
+bootstrap along with angular js is possible
+module for boostrap..bootstrap.ui...->use in angular js
+
+dependency means if I want angular js to work then we need some other 
+library..
+to use bootstrap we need to use jquery library..
+but for angular js we dont have any dependency library.
+
+ANGULAR JS supports in mobile app as well
+
+
+angular js 2 is different from 1.v...
+$-> can use this
+
+angular js is a javascript framework developed by google..
+it is designed for web developers and designers who need to have more control
+over their web applications.
+
+ANGULAR JS we can write code in client side also
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

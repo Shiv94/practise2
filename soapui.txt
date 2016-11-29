@@ -1,0 +1,108 @@
+SOAP UI TESTING
+
+A web service is a collection of protocols to exchange data bw 2 applications over a network
+
+->web service supports interoperable machine to machine interaction over a network
+have got no gui
+take input as xml and provide o/p as xml mostly
+
+wsdl defines what services are exposed by the web service
+
+->why xml?
+used for communication between machines
+used to hold data
+flexibility to design custom tags
+
+one in java ee and another .net ->thus both servers are different
+there is no interoperability between the 2 softwares
+ 
+THUS A WEB SERVICE SOLVES THIS
+
+parser at receiver end which parses the data in the format you want
+
+web services provide communication and interoperability between 2 systems 
+that do not belong to the same domain
+
+WSDL->Web Service Definition Language 
+an idea about the web service
+somebody who is using it...
+-->provides with the methods a web service uses
+-->provides with the parameters taken by a web service
+
+
+API specifies how software components should interact with each other
+set of protocols for communications
+
+soap is a protocol for communication
+->communication protocol
+
+ SOAPUI
+
+->used for soap testing
+->provides user interface for testing
+->open source tool for api testing
+->can perform both functional and non functional tests
+->supports soap,rest,jdbc and many more
+
+http://www.webservicex.net/CurrencyConvertor.asmx?WSDL
+
+
+END POINTS IN WEB SERVICES
+IN WEB SERVICES THERE ARE METHODS ...ENDPOINTS ARE URL WHICH DIRECT TO THAT METHOD
+
+---->Soap is a protocol ..guidelines,points need to follow
+WSDL->provides information about the web service,how it works
+what are the methods applicable for this web service
+
+http://www.webservicex.net/currencyconvertor.asmx?wsdl
+developers will provide this wsdl to you
+webservicex.net->get here 
+
+I will host this one any server->windows mac
+
+others can request from another server -> from wsdl
+
+does not depend on device
+
+https://www.youtube.com/watch?v=7iq7vyTwQB0 
+
+
+dependency between test cases :
+
+if we want to save the response somewhere we have to save it somewhere
+it does not save on its own
+
+PROPERTY TRANSFER
+->test cases are related to each other
+->supplier is taking city name 
+->test case may require input from another test case
+->instead of manually adding a value we might need property transfer
+
+->go to test suite..create a parameter as blank..city
+right click on test step->property transfer->zipcodeTransfer(name)
+
+enter the source->where you have added the property transfer
+property->response//whatever zipcode is coming in response we want to get that value
+
+define namespace
+xpath is //ns1:SupplierData[1]/ns1:ZipPlus4
+
+we have to enter target and property as well
+->now the target is in the other suite
+->where we want to send this property
+
+we have defined city at test suite 
+take value here at test suite
+now run
+we get the value in city to be 10119
+ we are able to transfer property from one request to another
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+WEB APPLICATION COURSE FROM UDEMY
+
+Ethernet technology 
+have mac address->unique id with every device
+
+each time you want to send a message you break the message into a frame
+source and destination
+switch knows how to route it to the proper device
+
+---------------------------------------------------------------------
+each device can be called a node
+tcp/ip networking model
+
+networking hardware
+application
+transport
+nw
+nw interface-------->ethernet protocol
+-----------------------------------------
+CLIENT SERVER ARCHITECTURE-THE most basic model for describing the relationship
+between corporating programs in a networked software application
+server->listens for requests
+client->sends out the request
+client(browser)------------->network(internet)-------->server(web server)
+-----------------------------------------------------------------
+the http initiates request and response cycle
+-------------------------
+
+WWW->web appplication uses www
+a system of interlinked documents(web pages) accessed by the internet
+
+a web app is built on top of www
+
+A DESIGN PATTERN is a reusable solution to a design problem that involves a 
+set of components that interact to solve a general design problem within a particular context
+
+N-TIER ARCHITECTURE
+A client server architecture in which application functionality is further partitioned into separate 
+tiers related to 1)presentation 2)application processing 3)data management
+
+Each tier is meant to address a separate concern that is encapsulated within a well-defined interface.
+his allows for each tier to be developed and modified without affecting other tiers. Each tier just needs
+to know how to access its adjacent tiers through the interfaces that they provide. This approach to encapsulating
+functionality greatly simplifies development and maintenance of software systems. A tier could be completely changed
+as long as it respects the interface of the tiers on either side of it and the application as a whole will not stop working. 
+
+
+WEB APPS ARE OFTEN DEPLOYED AS 3-TIER ARCHITECTURE
+Presentation Tier->User's web browser
+Data Tier->A relational database
+Application(Logic) Tier->The web server and logic associated with general dynamic web content
+
+
+
+
+

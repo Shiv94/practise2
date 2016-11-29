@@ -1,0 +1,244 @@
+$ git --version
+git version 2.10.1.windows.1
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~
+$ git config --global user.name "ShivaniSarin"
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~
+$ git config --global user.email "shivani.p.sarin@gmail.com"
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~
+$ cd Desktop
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~/Desktop
+$ cd Tuna
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~/Desktop/Tuna
+$ git init
+Initialized empty Git repository in C:/Users/Shivani/Desktop/tuna/.git/
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~/Desktop/Tuna (master)
+$ ^C
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~/Desktop/Tuna (master)
+$ ls -la
+total 16
+drwxr-xr-x 1 Shivani 197121 0 Nov 28 22:26 ./
+drwxr-xr-x 1 Shivani 197121 0 Nov 28 22:23 ../
+drwxr-xr-x 1 Shivani 197121 0 Nov 28 22:26 .git/
+
+-la gives all the hidden files..dont make changes to it
+----------------------------------------------------------------
+git add . 
+->. is to add all the files in the project in which changes have been made
+add to the staging area
+
+git commit -m "this is my first commit"
+->saving the project at that point of time
+
+-----------------------------------------------------------------
+
+git log ->gives commit history
+
+commit 9ff7c542a3864ca9e3eaaec4f335913d292c8a92
+Author: ShivaniSarin <shivani.p.sarin@gmail.com>
+Date:   Mon Nov 28 22:43:57 2016 -0600
+
+    This is our first commit
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~/Desktop/Tuna (master)
+$ git log --author="ShivaniSarin"
+commit 9ff7c542a3864ca9e3eaaec4f335913d292c8a92
+Author: ShivaniSarin <shivani.p.sarin@gmail.com>
+Date:   Mon Nov 28 22:43:57 2016 -0600
+
+    This is our first commit
+
+Shivani@DESKTOP-EVHQ2TM MINGW64 ~/Desktop/Tuna (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+---------------------------------------------------------
+WORKING COPY->STAGING AREA->REPOSITORY
+
+---------------------
+git add filename is basically you are adding a working copy to the staging area so
+that git can keep a record of the file after it has been "staged"
+
+git status will give the status of the files the one that have been added to
+the staging area and the ones that have not been added to the staging area
+----------------------------------
+once you are in the folder location and you do git init then
+you are making sure any changes made to the files in the folder will
+be reflected when we do git status
+-------------------------
+so git status will give modified files that have not been committed
+so to commit them add it to the staging area
+
+and then commit it
+----------------------------------------------------------
+ so the same file needs to be added to the staging area to commit it everytime 
+you make changes to the file
+-----------------------------------------------------------
+IF GIT STATUS DOESNT GIVE ANY FILE THEN THAT MEANS THAT THE FILE IN THE
+REPOSITORY AND IN THE DESKTOP(WORKING COPY) ARE THE SAME.
+
+-----------------------------
+
+git diff->differences bw the main repository and local/working copy
+
+-----------------------------------------------------------------
+ if you made changes in 2 files then the changes in both the files will be showed
+
+git add . -> add all files to staging area
+----------------------------------------------------
+IMPORTANT
+
+SAY YOU ADD A FILE TO THE STAGING AREA AND THEN YOU DO GIT DIFF THEN
+SINCE DIFF GIVES THE DIFFERENCE BETWEEN FILE IN STAGING AREA AND LOCAL
+WORKING COPY AND SINCE YOU HAVE ADDED THE FILE TO THE STAGING AREA
+---THEN DIFF WONT GIVE ANY DIFFERENCE
+------------------------------------------------------------------
+git diff->working copy and repository
+
+git diff --staged->difference between staged copy and repository
+
+--->separated by a commit we can fiind the difference between the two
+---------------------------------------------------------------------
+GIT DELETE FILES
+git rm filename
+->will remove the file from repository and working copy
+
+after deleting we need to commit the changes as well
+-------------------------------------------------------------------
+HOW TO RENAME AND MOVE THE FILES
+so when we need to rename files
+
+what we do is add the file in the staging area
+git add newfilename
+git rm oldfilename
+----->THIS WILL RESULT IN RENAMING THE FILE
+----------------------------------------------------------------------
+OR WE CAN MOVE THE FILE INSTEAD OF RENAMING IT
+----------------------------------------------------------------------
+
+GIT MV OLDFILE NEWFILE
+THIS WILL RENAME THE FILE AUTOMATICALLY
+---------------------------------------------------------------------
+move is used to rename files
+-------------------------------------------------------------------
+how to move a file into a folder
+
+git mv pudding.txt LoveNotes/patty.txt
+MOVING AND RENAMING
+---------------------------------------------------------------
+to initiliaze  the repository
+
+git init
+after going to the location
+-------------------------------------------------------------
+git add . 
+->adding all the files to the staging areaa
+------------------------------------------------------------
+how to commit directly to repository
+
+git commit -am "added"
+-skip staging area..from working copy to repository
+-> here we dont need to add to staging area we are directly commit
+we use this when :
+
+use this command only when you want to make small changes to the 
+files
+
+-------------------------------------------------------------
+git checkout -- index.html
+
+take the file from repository and get to local copy
+
+-------------------------------
+unstage files..
+remove files from staging area
+
+once you make a change ->add to the staging area using git add .
+
+just before i commit i want to unstage it
+git reset HEAD filename
+removing the file from staging area
+
+
+-------------------------
+getting old versions from the repository
+
+say if we want to go back to the old version
+
+-->>>get a copy of the second one 
+first >second >third >second 
+so that we can go to third version as well
+
+
+git checkout sha number -- index.html(filename)-> first few characters
+go to that commit
+git status 
+
+--------------------------------------------
+git remote add githubname(nickname) type the url
+git remote ->we will get githubname
+
+------------------------------------------------------
+git push -u githubname master ->this will upload the file from the location you are
+in to github
+
+gitignore to remove default files that are generated
+
+------------------------------------------------------
+git stash save changes made in the current index and working directory for later
+You're in the middle of some changes but something comes up that you need to jump over to, like a so-urgent-right-now bugfix, but don't want to commit or lose your current edits. git stash is there for you.
+
+git stash add current changes to the stack
+Stashing takes the current state of the working directory and index, puts it on a stack for later, and gives you back a clean working directory. It will then leave you at the state of the last commit.
+
+If you have untracked files, git stash will not include them. You can either stage those files with git add (you don't have to commit) before stashing, or, if you have a recent Git version (1.7.7 or above), you can use git stash -u to also stash also unversioned files.
+
+$ git status -s
+M hello.rb
+$ git stash
+Saved working directory and index state WIP on master: 5857ac1 hello with a flower
+HEAD is now at 5857ac1 hello with a flower
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+git stash list view stashes currently on the stack
+It's helpful to know what you've got stowed on the stash and this is where git stash list comes in. Running this command will display a queue of current stash items.
+
+$ git stash list
+stash@{0}: WIP on master: 5857ac1 hello with a flower
+The last item added onto the stash will be referenced by stash@{0} and increment those already there by one.
+
+$ vim hello.rb
+$ git commit -am 'it stops raining'
+[master ee2d2c6] it stops raining
+1 files changed, 1 insertions(+), 1 deletions(-)
+$ vim hello.rb
+$ git stash
+Saved working directory and index state WIP on master: ee2d2c6 it stops raining
+HEAD is now at ee2d2c6 it stops raining
+$ git stash list
+stash@{0}: WIP on master: ee2d2c6 it stops raining
+stash@{1}: WIP on master: 5857ac1 hello with a flower
+----------------------------------------------------------
+
+RAW IS USED TO SEE THE RAW FILE WITHOUT THE HTML..USE THAT FOR DOWNLOAD
+WONT FACE ERROR EVER.
+---------------------------------------------
+BLAME IS USED TO SEE WHO HAS EDITED EACH LINE OF THE FILE.
+------------------------------------------------------
+HISTORY GIVES US THE HISTORY OF COMMITS
+----------------------------------------------------------
+
+
+
+
+
+
+

@@ -1,0 +1,249 @@
+WEB SERVICES
+->is a way of calling a function which is inside a software from some other software
+say 2 softwares,1 and 2
+software 1 gives a call to function which is inside software 2
+the software which gives a call is called client and the software which gives service 
+is the server
+they need not be in the same lan ->java .net or any other language..
+need not be on the same machine
+but there should be a network connecting these 2 softwares..
+-------------------------------------------------------------
+1->medium(lAN,INTERNET) using http -(set of rules) of communication between the 2 softwares is important and also
+2->the format of input /ouput messages
+---------------------------------------------------------------
+SOAP 
+
+client and server is achitecture of web services
+4 functions ->1,2,3,4
+for client to get access to this functions in web services
+we need to know machine address of the service and some other things
+->xml wsdl file->makethis file available to the client so that the client
+can see these web services
+
+->client will need wsdl file to access services
+
+how is the client able to get the wsdl file from the internet??
+1->if service provider knows the client it gives it to the client directly
+2->uddi ->all services register with uddi..their web services
+ the service provider sends the xml(wsdl file) to UDDI
+
+client searches for a service in UDDI
+UDDI returns all the service providers offering that service
+client chooses one service provider and gets wsdl
+
+THIS WAY CLIENT CAN ACCESS THE WEB SERVICES
+
+----------------------------------------------------------------
+RESTFUL WEB SERVICES
+
+
+->gives a set of guidelines how a client should interact with server
+say a server exists where we have restful web services
+data,functionality which client can access from server is called resource
+and this resource must be accessed using its URI by all the clients
+
+---------> when the server responds back to the client the response 
+is like a representation of a RESOURCE
+->>>>a resource can be represented to a client in multiple formats
+xml,html,plain text,pdf,jpeg,json
+
+
+3 main features->
+client can directly access a resource using its URI
+better than soap in this case
+the response message which client gets is self-descriptive in nature
+->uniform interfaces
+commmunication protocol which restful web services use is http
+
+STATELESS COMMUNICATION->means every request from client to server is treated as 
+a new request and should be containing all the information needed 
+to establish communication
+
+methods
+GET- to retrieve a resource
+POST create a resource
+PUT update a resource
+DELETE delete a resource
+
+----------------------------------------------------------
+REST VS SOAP
+
+simple object access protocol
+->not too simple
+
+REST-representative state transfer
+public APIs are 70% rest
+
+--->soap is heavy weight choice 
+->advantages of soap
+1---->language platform and transport independent but in rest we use http
+2---->soap works well in distributed enterprise environment whereas 
+rest assumes direct point to point communication
+3---->soap is standardised ,pre-build extensibility ,built in error handling
+ represents an evolution of xml, to share data or objects across network boundaries
+-->soap provides loose coupling for integrating diverse systems->good point
+--->soap exposes operations which represent logic
+--->uses http post
+->emphasis on loosely coupled distributed messaging
+->supports asynchronous messaging
+
+
+rest adv
+1--->no expensive tools to interact with web services
+2--->small learning curve
+3--->soap using xml..
+rest is efficient as it can use smaller message formats
+4--->fast
+5--->closer to other web technologies
+rest exposes resources which represent data 
+use http verbs (get,put,post,delete)
+-->emphasis on simple point to point communication over http
+-->emphasizes stateless communication
+-->supports multiple data formats
+
+REST IS BETTER THAN SOAP
+rest can be consumed by any client even a browser with ajax and js
+rest is lightweight
+doesnt require xml parsing
+consumes less bandwidth
+doesnt require soap header for every message
+is safe...
+--easy to learn
+
+
+CHALLENGE OF REST IS IT IS DIFFICULT TO BUILD A CLIENT SOMETIMES
+
+SOAP IS BETTER THAN REST
+ building a client for rest is challenging
+we can easily generate client-side artifacts from a wsdl
+rest only supports http/https->synchronous
+soap is for asynchronous->can support more consumers..for same number of producers
+->decouples ...
+
+rest is not secureee-----> parameters as part of the URI
+rest is not reliable -> no reliable messaging
+
+--------------------------------------------------------------------
+soap web services uses soap protocol 
+protocol in case of rest-> xml,json,text,no rules
+ SOAP SPECIFICATION ->SET OF RULES WHICH EVERY SOAP WEB SERVICE FOLLOWS
+EVEN IF ONE IS NOT FOLLOWED THEN IT IS NOT A SOAP WEB SERVICE
+FOR SOAP THERE IS A STANDARD CALL WSDL..ALL THE DETAILS 
+
+WHEN CLIENT GETS HOLD OF WSDL IT GETS ALL THE INFORMATION
+
+RESTFUL WEB SERVICES->>NO SUCH STANDARD
+NO DOCUMENTATION...IF THERE IS ,IT IS LIGHT WE CAN READ FROM IT
+NO RULES
+NO SPECIFICATION
+---------------------------------------
+REST IS ARCHITECTURAL STYLE 
+CAN USE IT FOR ANY APPLICATION
+----------------------------------------
+REST
+
+everytime we load a page we make a http request
+http->protocol or language for communication
+the stuff that we exchnage is called hyper text
+hyperlinks..links bw texts
+
+RESOURCE LOCATIONS->
+weather.com/weatherlookup.do?zipcode=12345
+
+resource based uri->
+weatherapp.com/zipcode/12345
+
+http methods or verbs to interact with urls
+
+get,
+put->used in forms,
+delete 
+post
+
+METADATA->we tell the client what the address is
+http has status codes..in response
+number that shows up in the very first lines
+200--->success
+500--->Server error
+404-not found
+
+format of the message ->no specification
+how to they communicate?
+
+header value contains metadata ->which helps
+text/xml
+application/json
+
+parsed by either client or server
+
+resource based uris to identify API
+http methods
+http status codes 
+message headers ->client and server to know what the format of the message is
+
+-------------------------------------------
+web services are client server,or producer consumer applications that commmunicate over network 
+using http protocol and exchange messages using xml and json
+
+client and server can run on different platforms
+
+
+soa is a design principle
+
+-----------------------
+how many types of web services are there?
+2 soap and rest
+soap->http post method and uses xml to send or exchange data
+rest-> http ,standard interface for perform operations for application
+rest supports multiple data formats
+
+soap returns data in xml format and has an optional header...
+
+restful web services do not require xml or wsdl 
+rest can return html,xml,json
+
+
+-------------------------------------------
+soap is better when the api is likely to change
+reliability use soap
+
+rest is stateless-> transfer xml,text, json rest is the best option
+
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

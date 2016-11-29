@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo">
+<head>
+<title>Angular Demo</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script>
+var app= angular.module("demo",[]);
+app.controller("testCtrl",function($scope,$rootScope){
+console.log("Inside test controller");
+$rootScope.name="Shivani";
+$scope.alertme=function(){
+
+alert("inside function");
+
+}
+});
+app.controller("testControllerNew",function($scope){
+
+});
+</script>
+
+<body>
+<h1>Hello World</h1>
+<div ng-controller="testCtrl">
+ 4+4 ={{ 4+4 }}
+<h1>{{ name }}</h1>
+<input type="text" ng-model="name">{{name }}</input>
+
+<button ng-click="alertme()">Alert</button>
+</div>
+
+
+
+
+
+</body>
+
+</html>

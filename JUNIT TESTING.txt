@@ -1,0 +1,15 @@
+UNIT TESTING
+create a maven project...when we write a unit test we need a speicifc structure
+which is created by maven
+maven is a java built tool
+file->new->maven project
+------->create a simple project..
+groupid->>something
+artifact id->something
+a test is successful if there are no failures..
+fail("Not yet implemented")
+
+NO OTHER SIGNATURE IS ACCEPTABLE WHILE MAKING A TEST METHOD 
+ONLY PUBLIC VOID IS 
+
+NO FAIL MEANS SUCCESS..IF NOTHING EXISTS THEN ALSO SUCCESS
